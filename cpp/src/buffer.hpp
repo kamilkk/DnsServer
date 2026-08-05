@@ -48,7 +48,7 @@ public:
     void set_position(size_t pos) { position_ = pos; }
 };
 
-inline Result<std::string> parse_domain_name(ByteBuffer& buffer, size_t jumps = 0) {
+inline Result<std::string> parse_domain_name(ByteBuffer& buffer, size_t jumps) {
     // Prevent malicious packets from causing stack overflows via cyclic pointers
     if (jumps > 5) {
         return std::unexpected(DnsErrorCode::CompressionLoop);
