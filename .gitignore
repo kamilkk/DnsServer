@@ -1,0 +1,10 @@
+# General
+.vscode/
+.idea/
+.DS_Store
+
+# C++
+build/
+*.o
+*.out
+*.exe
