@@ -7,17 +7,15 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 include(FetchContent)
 
-# Fetch Standalone Asio
+# Fetch FTXUI
 FetchContent_Declare(
-    asio
-    URL https://github.com/chriskohlhoff/asio/archive/asio-1-28-0.tar.gz
+  ftxui
+  GIT_REPOSITORY https://github.com/ArthurSonzogni/FTXUI
+  GIT_TAG v5.0.0
 )
-FetchContent_MakeAvailable(asio)
+FetchContent_MakeAvailable(ftxui)
 
 add_executable(dns_server src/main.cpp)
 
-# Define include directories for asio
-target_include_directories(dns_server PRIVATE ${asio_SOURCE_DIR}/asio/include)
-
-# Link against system libraries and define macros
-target_compile_definitions(dns_server PRIVATE ASIO_STANDALONE ASIO_HAS_CO_AWAIT)
+# Link against FTXUI components
+target_link_libraries(dns_server PRIVATE ftxui::screen ftxui::dom ftxui::component)
