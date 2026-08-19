@@ -2,10 +2,11 @@
 
 This repository covers the implementation of a fully functional DNS Server built from scratch in various backend programming languages. The project demonstrates core concepts like binary protocol parsing, networking, and language-specific modern features.
 
-## Implemented Languages (Done Folders)
+## Implemented versions
 
 Currently, the DNS Server is implemented in the following languages:
-- **[cpp](./cpp/)**: Modern C++ (C++23) implementation using Standalone Asio and C++20 Coroutines.
+- **[cpp](./cpp/)**: Modern C++ (C++23) implementation using C++20 Coroutines.
+- **[rust](./rust/)**: Rust implementation using [Tokio](https://github.com/tokio-rs/tokio).
 
 ## Running and Testing
 
@@ -45,3 +46,40 @@ nslookup -port=15353 example.local 127.0.0.1
 ```
 
 You should receive a successful response pointing `example.local` to the configured IP address.
+
+### Rust
+
+**Prerequisites:**
+- Rust 1.56+ (2021 edition or later)
+
+**Building:**
+Navigate to the `rust` folder and build the project using cargo:
+```bash
+# Type-check everything (lib, bin, tests)
+cargo check --all-targets
+
+# Build the server
+cargo build
+```
+
+**Running the Server:**
+Start the DNS server (listens on port 15353 by default):
+```bash
+./target/debug/dns_server
+
+# or alternatively 
+cargo run
+```
+
+**Testing:**
+In another terminal, you can query the server using standard command-line tools like `dig` or `nslookup`.
+
+Using `dig` (Linux/macOS):
+```bash
+dig @127.0.0.1 -p 15353 example.local
+```
+
+Using `nslookup` (Windows):
+```bash
+nslookup -port=15353 example.local 127.0.0.1
+```

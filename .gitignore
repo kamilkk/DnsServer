@@ -9,3 +9,4 @@ build/
 *.out
 *.exe
 *-tutorial.md
+rust/target
